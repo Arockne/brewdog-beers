@@ -1,5 +1,5 @@
 function getBeers(page = 1) {
-  fetch(`https://api.punkapi.com/v2/beers`)
+  fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=20`)
   .then(resp => resp.json())
   .then(renderBeers)
 }
@@ -18,11 +18,15 @@ function createBeerCard(beer) {
   const card = document.createElement('div')
   card.className = 'card';
   card.append(img, name);
-  console.log(card);
-  
+
   document.querySelector('#item-container').appendChild(card)
+}
+
+function getMoreBeer() {
+  
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   getBeers();
+  getMoreBeer();
 })
