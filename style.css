@@ -1,4 +1,19 @@
+body {
+  background-color: purple;
+}
+
+img {
+  width: 90%;
+}
+
+
+.card {
+  width: 10%;
+}
+
 #item-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
 }
