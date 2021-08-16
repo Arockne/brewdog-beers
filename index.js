@@ -24,20 +24,29 @@ function createBeerCard(beer) {
 
 function getMoreBeer() {
   let page = 1;
+  const items = document.querySelector('#item-container');
   const less = document.querySelector('#less');
   less.addEventListener('click', () => {
     page -= 1;
     if (page === 0) {
+      page = 1;
       return;
     }
-    document.querySelector('#item-container').forEach()
+    removeChildren(items);
     getBeers(page);
   })
   const more = document.querySelector('#more');
   more.addEventListener('click', () => {
     page += 1;
+    removeChildren(items);
     getBeers(page);
   })
+}
+
+function removeChildren(node) {
+  while(node.firstChild) {
+    node.removeChild(node.firstChild);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
