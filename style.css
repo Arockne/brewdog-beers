@@ -3,17 +3,19 @@ body {
 }
 
 img {
-  width: 90%;
+  width: 50%;
 }
 
 
 .card {
   width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #item-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
-  align-content: space-around;
+  align-items: baseline;
 }
