@@ -1,3 +1,5 @@
+let page = 1;
+
 function getBeers(page = 1, name) {
   const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
   fetch(url)
@@ -33,12 +35,14 @@ function getBeersFromSearch() {
     rerenderPageButtons();
     const name = searchForm.querySelector('#beer-name').value;
     getBeers(1, name);
+    getMoreBeer(name);
   })
 }
 
 function rerenderPageButtons() {
   const bttnContainer = document.querySelector('#bttn-container');
   removeChildren(bttnContainer);
+
   const previous = document.createElement('button');
   previous.id = 'previous-page';
   previous.textContent = 'Previous Page';
@@ -51,8 +55,8 @@ function rerenderPageButtons() {
 }
 
 //might need to use this function to supply page number and name of the search
-function getMoreBeer() {
-  let page = 1;
+function getMoreBeer(name) {
+  page = 1;
   const items = document.querySelector('#item-container');
   const previous = document.querySelector('#previous-page');
   previous.addEventListener('click', () => {
@@ -62,13 +66,15 @@ function getMoreBeer() {
       return;
     }
     removeChildren(items);
-    getBeers(page);
+    getBeers(page, name);
   })
   const next = document.querySelector('#next-page');
   next.addEventListener('click', () => {
-    page += 1;
-    removeChildren(items);
-    getBeers(page);
+    if (items.children.length !== 0) {
+      page += 1;
+      removeChildren(items);
+      getBeers(page, name);
+    }
   })
 }
 
