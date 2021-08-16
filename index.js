@@ -38,8 +38,8 @@ function getBeersFromSearch() {
 function getMoreBeer() {
   let page = 1;
   const items = document.querySelector('#item-container');
-  const less = document.querySelector('#less');
-  less.addEventListener('click', () => {
+  const previous = document.querySelector('#previous-page');
+  previous.addEventListener('click', () => {
     page -= 1;
     if (page === 0) {
       page = 1;
@@ -48,8 +48,8 @@ function getMoreBeer() {
     removeChildren(items);
     getBeers(page);
   })
-  const more = document.querySelector('#more');
-  more.addEventListener('click', () => {
+  const next = document.querySelector('#next-page');
+  next.addEventListener('click', () => {
     page += 1;
     removeChildren(items);
     getBeers(page);
