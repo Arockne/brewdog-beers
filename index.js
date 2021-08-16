@@ -61,17 +61,21 @@ function rerenderPageButtons() {
 //might need to use this function to supply page number and name of the search
 function getMoreBeer(name) {
   page = 1;
+  
   const previous = document.querySelector('#previous-page');
   previous.addEventListener('click', () => handlePreviousBttn(name));
+
   const next = document.querySelector('#next-page');
-  next.addEventListener('click', () => {
-    const items = document.querySelector('#item-container');
-    if (items.children.length !== 0) {
-      page += 1;
-      removeChildren(items);
-      getBeer(page, name);
-    }
-  })
+  next.addEventListener('click', () => handleNextBttn(name));
+}
+
+function handleNextBttn(name) {
+  const items = document.querySelector('#item-container');
+  if (items.children.length !== 0) {
+    page += 1;
+    removeChildren(items);
+    getBeer(page, name);
+  }
 }
 
 function handlePreviousBttn(name) {
