@@ -1,13 +1,13 @@
 let page = 1;
 
-function getBeers(page = 1, name) {
+function getBeer(page = 1, name) {
   const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
   fetch(url)
   .then(resp => resp.json())
-  .then(renderBeers)
+  .then(renderBeer)
 }
 
-function renderBeers(beers) {
+function renderBeer(beers) {
   beers.forEach(createBeerCard)
 }
 
@@ -26,7 +26,7 @@ function createBeerCard(beer) {
   document.querySelector('#item-container').appendChild(card)
 }
 
-function getBeersFromSearch() {
+function getBeerFromSearch() {
   const searchForm = document.querySelector('#beer-search')
   const items = document.querySelector('#item-container');
   searchForm.addEventListener('submit', handleSearchSubmit);
@@ -38,9 +38,9 @@ function handleSearchSubmit(e) {
   const items = document.querySelector('#item-container');
   removeChildren(items);
   rerenderPageButtons();
-  
+
   const name = e.target.parentNode.querySelector('#beer-name').value;
-  getBeers(1, name);
+  getBeer(1, name);
   getMoreBeer(name);
 }
 
@@ -71,14 +71,14 @@ function getMoreBeer(name) {
       return;
     }
     removeChildren(items);
-    getBeers(page, name);
+    getBeer(page, name);
   })
   const next = document.querySelector('#next-page');
   next.addEventListener('click', () => {
     if (items.children.length !== 0) {
       page += 1;
       removeChildren(items);
-      getBeers(page, name);
+      getBeer(page, name);
     }
   })
 }
@@ -90,7 +90,7 @@ function removeChildren(node) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  getBeers();
+  getBeer();
   getMoreBeer();
-  getBeersFromSearch();
+  getBeerFromSearch();
 })
