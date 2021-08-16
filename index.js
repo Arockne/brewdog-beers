@@ -17,11 +17,11 @@ function createBeerCard(beer) {
   if (image_url !== null) img.src = image_url;
   
   const beerName = document.createElement('h3');
-  beerName.textContent = beerName;
+  beerName.textContent = name;
   
   const card = document.createElement('div')
   card.className = 'card';
-  card.append(img, name);
+  card.append(img, beerName);
 
   document.querySelector('#item-container').appendChild(card)
 }
@@ -61,7 +61,7 @@ function rerenderPageButtons() {
 //might need to use this function to supply page number and name of the search
 function getMoreBeer(name) {
   page = 1;
-  
+
   const previous = document.querySelector('#previous-page');
   previous.addEventListener('click', () => handlePreviousBttn(name));
 
