@@ -28,7 +28,6 @@ function createBeerCard(beer) {
 
 function getBeerFromSearch() {
   const searchForm = document.querySelector('#beer-search')
-  const items = document.querySelector('#item-container');
   searchForm.addEventListener('submit', handleSearchSubmit);
 }
 
@@ -62,25 +61,30 @@ function rerenderPageButtons() {
 //might need to use this function to supply page number and name of the search
 function getMoreBeer(name) {
   page = 1;
-  const items = document.querySelector('#item-container');
   const previous = document.querySelector('#previous-page');
-  previous.addEventListener('click', () => {
-    page -= 1;
-    if (page === 0) {
-      page = 1;
-      return;
-    }
-    removeChildren(items);
-    getBeer(page, name);
-  })
+  previous.addEventListener('click', () => handlePreviousBttn(name));
   const next = document.querySelector('#next-page');
   next.addEventListener('click', () => {
+    const items = document.querySelector('#item-container');
     if (items.children.length !== 0) {
       page += 1;
       removeChildren(items);
       getBeer(page, name);
     }
   })
+}
+
+function handlePreviousBttn(name) {
+  page -= 1;
+  if (page === 0) {
+    page = 1;
+    return;
+  }
+  
+  const items = document.querySelector('#item-container');
+  removeChildren(items);
+
+  getBeer(page, name);
 }
 
 function removeChildren(node) {
