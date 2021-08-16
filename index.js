@@ -26,12 +26,28 @@ function createBeerCard(beer) {
 
 function getBeersFromSearch() {
   const searchForm = document.querySelector('#beer-search')
+  const items = document.querySelector('#item-container');
   searchForm.addEventListener('submit', e => {
     e.preventDefault();
-    removeChildren(document.querySelector('#item-container'));
+    removeChildren(items);
+    rerenderPageButtons();
     const name = searchForm.querySelector('#beer-name').value;
     getBeers(1, name);
   })
+}
+
+function rerenderPageButtons() {
+  const bttnContainer = document.querySelector('#bttn-container');
+  removeChildren(bttnContainer);
+  const previous = document.createElement('button');
+  previous.id = 'previous-page';
+  previous.textContent = 'Previous Page';
+  
+  const next = document.createElement('button');
+  next.id = "next-page";
+  next.textContent = 'Next Page';
+  
+  bttnContainer.append(previous, next);
 }
 
 //might need to use this function to supply page number and name of the search
