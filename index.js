@@ -1,5 +1,6 @@
-function getBeers(page = 1) {
-  fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=20`)
+function getBeers(page = 1, name) {
+  const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
+  fetch(url)
   .then(resp => resp.json())
   .then(renderBeers)
 }
@@ -22,6 +23,17 @@ function createBeerCard(beer) {
   document.querySelector('#item-container').appendChild(card)
 }
 
+function getBeersFromSearch() {
+  const searchForm = document.querySelector('#beer-search')
+  searchForm.addEventListener('submit', e => {
+    e.preventDefault();
+    removeChildren(document.querySelector('#item-container'));
+    const name = searchForm.querySelector('#beer-name').value;
+    getBeers(1, name);
+  })
+}
+
+//might need to use this function to supply page number and name of the search
 function getMoreBeer() {
   let page = 1;
   const items = document.querySelector('#item-container');
@@ -52,4 +64,5 @@ function removeChildren(node) {
 document.addEventListener('DOMContentLoaded', () => {
   getBeers();
   getMoreBeer();
+  getBeersFromSearch();
 })
