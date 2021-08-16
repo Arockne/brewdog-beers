@@ -23,7 +23,21 @@ function createBeerCard(beer) {
 }
 
 function getMoreBeer() {
-  
+  let page = 1;
+  const less = document.querySelector('#less');
+  less.addEventListener('click', () => {
+    page -= 1;
+    if (page === 0) {
+      return;
+    }
+    document.querySelector('#item-container').forEach()
+    getBeers(page);
+  })
+  const more = document.querySelector('#more');
+  more.addEventListener('click', () => {
+    page += 1;
+    getBeers(page);
+  })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
