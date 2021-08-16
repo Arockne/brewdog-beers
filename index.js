@@ -29,14 +29,19 @@ function createBeerCard(beer) {
 function getBeersFromSearch() {
   const searchForm = document.querySelector('#beer-search')
   const items = document.querySelector('#item-container');
-  searchForm.addEventListener('submit', e => {
-    e.preventDefault();
-    removeChildren(items);
-    rerenderPageButtons();
-    const name = searchForm.querySelector('#beer-name').value;
-    getBeers(1, name);
-    getMoreBeer(name);
-  })
+  searchForm.addEventListener('submit', handleSearchSubmit);
+}
+
+function handleSearchSubmit(e) {
+  e.preventDefault();
+  
+  const items = document.querySelector('#item-container');
+  removeChildren(items);
+  rerenderPageButtons();
+  
+  const name = e.target.parentNode.querySelector('#beer-name').value;
+  getBeers(1, name);
+  getMoreBeer(name);
 }
 
 function rerenderPageButtons() {
