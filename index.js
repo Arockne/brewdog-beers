@@ -1,10 +1,20 @@
 let page = 1;
 
 function getBeer(page = 1, name) {
+  name = replaceSpaces(name);
   const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
   fetch(url)
   .then(resp => resp.json())
   .then(renderBeer)
+}
+
+function replaceSpaces(name) {
+  const spaces = / /g;
+  if (name) name.trim();
+  if (spaces.test(name)) {
+    name = name.replace(spaces, '_');
+  }
+  return name;
 }
 
 function renderBeer(beers) {
@@ -58,7 +68,6 @@ function rerenderPageButtons() {
   bttnContainer.append(previous, next);
 }
 
-//might need to use this function to supply page number and name of the search
 function getMoreBeer(name) {
   page = 1;
 
@@ -68,7 +77,7 @@ function getMoreBeer(name) {
   const next = document.querySelector('#next-page');
   next.addEventListener('click', () => handleNextBttn(name));
 }
-
+//Need to append something to the item-list to show the user that it is the end search the page reaches the end of the search results
 function handleNextBttn(name) {
   const items = document.querySelector('#item-container');
   if (items.children.length !== 0) {
