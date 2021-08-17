@@ -2,7 +2,7 @@ let page = 1;
 
 function getBeer(page = 1, name) {
   name = replaceSpaces(name);
-  const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
+  const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=21&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=21`;
   fetch(url)
   .then(resp => resp.json())
   .then(renderBeer)
@@ -91,7 +91,7 @@ function getMoreBeer(name) {
 
 function handleNextBttn(name) {
   const items = document.querySelector('#item-container');
-  if (items.children.length === 20) {
+  if (items.children.length > 0) {
     page += 1;
     removeChildren(items);
     getBeer(page, name);
