@@ -16,6 +16,12 @@ button, [type='submit']{
   padding: 10px 15px;
 }
 
+button,
+[type='submit'],
+.page-header img {
+  cursor: pointer;
+}
+
 .page-header img {
   display: block;
   margin: 0 auto;
