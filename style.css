@@ -1,5 +1,6 @@
 body {
   background-color: purple;
+  font-family: 'Quantico', sans-serif;
 }
 
 label {
@@ -12,7 +13,7 @@ button, [type='submit']{
   color: #fff;
   font-weight: bold;
   border-radius: 50%;
-  padding: 15px;
+  padding: 10px 15px;
 }
 
 .page-header img {
