@@ -5,16 +5,15 @@ body {
 img {
   max-width: 50%;
   max-height: auto;
-  
+  margin: 0 auto;
 }
 
 .card {
   width: 10%;
   margin: 1em;
-  align-self: flex-end;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
   background-color: white;
   border: 5px black solid;
 }
@@ -27,5 +26,6 @@ img {
 #item-container {
   display: flex;
   flex-flow: row wrap;
-  margin: 1rem 10rem;
+  align-content: flex-end;
+  margin: 1rem 5rem;
 }
