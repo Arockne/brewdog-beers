@@ -17,6 +17,13 @@ function replaceSpaces(name) {
   return name;
 }
 
+function handleEndOfSelection() {
+  const end = document.createElement('p')
+  end.textContent = "End of Selection \'(>_<)\'";
+  end.id = 'end';
+  document.querySelector('#item-container').append(end);
+}
+
 function renderBeer(beers) {
   beers.forEach(createBeerCard)
   if (beers.length === 0) handleEndOfSelection();
@@ -81,7 +88,7 @@ function getMoreBeer(name) {
   const next = document.querySelector('#next-page');
   next.addEventListener('click', () => handleNextBttn(name));
 }
-//Need to append something to the item-list to show the user that it is the end search the page reaches the end of the search results
+
 function handleNextBttn(name) {
   const items = document.querySelector('#item-container');
   if (items.children.length === 20) {
@@ -102,13 +109,6 @@ function handlePreviousBttn(name) {
   removeChildren(items);
 
   getBeer(page, name);
-}
-
-function handleEndOfSelection() {
-  const end = document.createElement('p')
-  end.textContent = "End of Selection \'(>_<)\'";
-  end.id = 'end';
-  document.querySelector('#item-container').append(end);
 }
 
 function removeChildren(node) {
