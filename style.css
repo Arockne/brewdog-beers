@@ -49,8 +49,9 @@ button,
   text-align: center;
 }
 
-#beer-search {
-  text-align: center;
+#search-container {
+  display: flex;
+  justify-content: center;
 }
 
 #item-container {
