@@ -17,16 +17,16 @@ function replaceSpaces(name) {
   return name;
 }
 
+function renderBeer(beers) {
+  beers.forEach(createBeerCard)
+  if (beers.length === 0) handleEndOfSelection();
+}
+
 function handleEndOfSelection() {
   const end = document.createElement('p')
   end.textContent = "End of Selection \'(>_<)\'";
   end.id = 'end';
   document.querySelector('#item-container').append(end);
-}
-
-function renderBeer(beers) {
-  beers.forEach(createBeerCard)
-  if (beers.length === 0) handleEndOfSelection();
 }
 
 function createBeerCard(beer) {
@@ -104,10 +104,8 @@ function handlePreviousBttn(name) {
     page = 1;
     return;
   }
-  
   const items = document.querySelector('#item-container');
   removeChildren(items);
-
   getBeer(page, name);
 }
 
