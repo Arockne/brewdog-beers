@@ -16,6 +16,7 @@ img {
   justify-content: space-evenly;
   background-color: white;
   border: 5px black solid;
+  box-shadow: 4px 4px 19px black;
 }
 
 .card h3 {
