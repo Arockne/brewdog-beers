@@ -55,5 +55,12 @@ button, [type='submit']{
 }
 
 #bttn-container {
-  margin-left: 6rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#end {
+  font-size: 4rem;
+  margin: 0 auto;
+  text-align: center;
 }
