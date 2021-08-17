@@ -15,11 +15,14 @@
   <header class="page-header">
     <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Brewdog_logo.png" alt="BrewDog logo">
   </header>
-  <form id='beer-search'>
-    <label for="beer-name">Search By Name: </label>
-    <input type="text" name="beer-name" id="beer-name">
-    <input type="submit" value="Submit Search">
-  </form>
+  <div id="search-container">
+    <form id='beer-search'>
+      <label for="beer-name">Search By Name: </label>
+      <input type="text" name="beer-name" id="beer-name">
+      <input type="submit" value="Submit Search">
+    </form>
+    <button id="random">Random Beer</button>
+  </div>
   
   <div>
     <div id="item-container"></div>
