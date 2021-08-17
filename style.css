@@ -2,6 +2,11 @@ body {
   background-color: purple;
 }
 
+.page-header img {
+  display: block;
+  margin: 0 auto;
+}
+
 .card {
   width: 10%;
   margin: 1em;
@@ -21,6 +26,10 @@ body {
 
 .card h3 {
   font-size: .75rem;
+  text-align: center;
+}
+
+#beer-search {
   text-align: center;
 }
 
