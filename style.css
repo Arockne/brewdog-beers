@@ -2,12 +2,6 @@ body {
   background-color: purple;
 }
 
-img {
-  max-width: 50%;
-  max-height: auto;
-  margin: 0 auto;
-}
-
 .card {
   width: 10%;
   margin: 1em;
@@ -17,6 +11,12 @@ img {
   background-color: white;
   border: 5px black solid;
   box-shadow: 4px 4px 19px black;
+}
+
+.card img {
+  max-width: 50%;
+  max-height: auto;
+  margin: 0 auto;
 }
 
 .card h3 {
