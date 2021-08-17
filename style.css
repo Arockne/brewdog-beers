@@ -3,19 +3,29 @@ body {
 }
 
 img {
-  width: 50%;
+  max-width: 50%;
+  max-height: auto;
+  
 }
-
 
 .card {
   width: 10%;
+  margin: 1em;
+  align-self: flex-end;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  border: 5px black solid;
+}
+
+.card h3 {
+  font-size: .75rem;
+  text-align: center;
 }
 
 #item-container {
   display: flex;
   flex-flow: row wrap;
-  align-items: baseline;
+  margin: 1rem 10rem;
 }
