@@ -24,7 +24,10 @@ function renderBeer(beers) {
 function createBeerCard(beer) {
   const {image_url, name} = beer
   const img = document.createElement('img');
-  if (image_url !== null) img.src = image_url;
+  if (image_url !== null) {
+    img.src = image_url;
+    img.alt = 'Beer label';
+  }
   
   const beerName = document.createElement('h3');
   beerName.textContent = name;
