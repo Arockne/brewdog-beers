@@ -36,14 +36,11 @@ function createBeerCard(beer) {
     img.src = image_url;
     img.alt = 'Beer label';
   }
-  
   const beerName = document.createElement('h3');
   beerName.textContent = name;
-  
   const card = document.createElement('div')
   card.className = 'card';
   card.append(img, beerName);
-
   document.querySelector('#item-container').appendChild(card)
 }
 
@@ -52,13 +49,22 @@ function getBeerFromSearch() {
   searchForm.addEventListener('submit', handleSearchSubmit);
 }
 
+function refreshList() {
+  const logo = document.querySelector('.page-header img');
+  const items = document.querySelector('#item-container');
+  logo.addEventListener('click', () => {
+    removeChildren(items);
+    rerenderPageButtons();
+    getBeer();
+    getMoreBeer();
+  });
+}
+
 function handleSearchSubmit(e) {
   e.preventDefault();
-  
   const items = document.querySelector('#item-container');
   removeChildren(items);
   rerenderPageButtons();
-
   const name = e.target.parentNode.querySelector('#beer-name').value;
   getBeer(1, name);
   getMoreBeer(name);
@@ -67,24 +73,19 @@ function handleSearchSubmit(e) {
 function rerenderPageButtons() {
   const bttnContainer = document.querySelector('#bttn-container');
   removeChildren(bttnContainer);
-
   const previous = document.createElement('button');
   previous.id = 'previous-page';
   previous.textContent = 'Previous Page';
-  
   const next = document.createElement('button');
   next.id = "next-page";
   next.textContent = 'Next Page';
-  
   bttnContainer.append(previous, next);
 }
 
 function getMoreBeer(name) {
   page = 1;
-
   const previous = document.querySelector('#previous-page');
   previous.addEventListener('click', () => handlePreviousBttn(name));
-
   const next = document.querySelector('#next-page');
   next.addEventListener('click', () => handleNextBttn(name));
 }
@@ -119,4 +120,5 @@ document.addEventListener('DOMContentLoaded', () => {
   getBeer();
   getMoreBeer();
   getBeerFromSearch();
+  refreshList();
 })
