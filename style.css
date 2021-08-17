@@ -2,7 +2,12 @@ body {
   background-color: purple;
 }
 
-button {
+label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+button, [type='submit']{
   background-color: #1f1137;
   color: #fff;
   font-weight: bold;
@@ -46,4 +51,8 @@ button {
   flex-flow: row wrap;
   align-content: flex-end;
   margin: 1rem 5rem;
+}
+
+#bttn-container {
+  margin-left: 6rem;
 }
