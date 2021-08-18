@@ -8,6 +8,22 @@ function getBeer(page = 1, name) {
   .then(renderBeer)
 }
 
+function getRandomBeer() {
+  const randomBttn = document.querySelector('#random-bttn');
+  const items = document.querySelector('#item-container');
+  randomBttn.addEventListener('click', () => {
+    rerenderPageButtons();
+    removeChildren(items);
+    fetch('https://api.punkapi.com/v2/beers/random')
+    .then(resp => resp.json())
+    .then(beer => {
+      renderBeer(beer)
+      console.log(items.firstChild)
+      items.firstChild.style.margin = '0 auto';
+    })
+  })
+}
+
 function replaceSpaces(name) {
   const spaces = / /g;
   if (name) name.trim();
@@ -34,8 +50,10 @@ function createBeerCard(beer) {
   const img = document.createElement('img');
   if (image_url !== null) {
     img.src = image_url;
-    img.alt = 'Beer label';
+  } else {
+    img.src = './resources/images/bottle.png'
   }
+  img.alt = 'Beer label';
   const beerName = document.createElement('h3');
   beerName.textContent = name;
   const card = document.createElement('div')
@@ -120,5 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
   getBeer();
   getMoreBeer();
   getBeerFromSearch();
+  getRandomBeer();
   refreshList();
 })
