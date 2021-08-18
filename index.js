@@ -18,7 +18,6 @@ function getRandomBeer() {
     .then(resp => resp.json())
     .then(beer => {
       renderBeer(beer)
-      console.log(items.firstChild)
       items.firstChild.style.margin = '0 auto';
     })
   })
@@ -74,7 +73,7 @@ function refreshList() {
     removeChildren(items);
     rerenderPageButtons();
     getBeer();
-    getMoreBeer();
+    handlePageChangeWith();
   });
 }
 
@@ -85,7 +84,7 @@ function handleSearchSubmit(e) {
   rerenderPageButtons();
   const name = e.target.parentNode.querySelector('#beer-name').value;
   getBeer(1, name);
-  getMoreBeer(name);
+  handlePageChangeWith(name);
   e.target.reset();
 }
 
@@ -101,7 +100,7 @@ function rerenderPageButtons() {
   bttnContainer.append(previous, next);
 }
 
-function getMoreBeer(name) {
+function handlePageChangeWith(name) {
   page = 1;
   const previous = document.querySelector('#previous-page');
   previous.addEventListener('click', () => handlePreviousBttn(name));
@@ -137,7 +136,7 @@ function removeChildren(node) {
 
 document.addEventListener('DOMContentLoaded', () => {
   getBeer();
-  getMoreBeer();
+  handlePageChangeWith();
   getBeerFromSearch();
   getRandomBeer();
   refreshList();
