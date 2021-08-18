@@ -86,6 +86,7 @@ function handleSearchSubmit(e) {
   const name = e.target.parentNode.querySelector('#beer-name').value;
   getBeer(1, name);
   getMoreBeer(name);
+  e.target.reset();
 }
 
 function rerenderPageButtons() {
