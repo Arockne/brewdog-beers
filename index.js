@@ -1,6 +1,6 @@
 let page = 1;
 
-function getBeer(page = 1, name) {
+const getBeer = (page = 1, name) => {
   name = replaceSpaces(name);
   const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
   fetch(url)
@@ -8,7 +8,7 @@ function getBeer(page = 1, name) {
   .then(renderBeer)
 }
 
-function getRandomBeer() {
+const getRandomBeer = () => {
   const randomBttn = document.querySelector('#random-bttn');
   const items = document.querySelector('#item-container');
   randomBttn.addEventListener('click', () => {
@@ -23,7 +23,7 @@ function getRandomBeer() {
   })
 }
 
-function replaceSpaces(name) {
+const replaceSpaces = name => {
   const spaces = / /g;
   if (name) name.trim();
   if (spaces.test(name)) {
@@ -32,18 +32,18 @@ function replaceSpaces(name) {
   return name;
 }
 
-function renderBeer(beers) {
+const renderBeer = beers => {
   beers.forEach(createBeerCard)
   if (beers.length === 0) handleEndOfSelection();
 }
 
-function handleEndOfSelection() {
+const handleEndOfSelection = () => {
   const end = createElementWithText('p', "End of Selection \'(>_<)\'");
   end.id = 'end';
   document.querySelector('#item-container').append(end);
 }
 
-function createBeerCard(beer) {
+const createBeerCard = beer => {
   const {image_url, name} = beer
   const imgURL = image_url ? image_url : './resources/images/bottle.png';
   const img = createImage(imgURL, 'Bottle');
@@ -58,7 +58,7 @@ function createBeerCard(beer) {
   document.querySelector('#item-container').appendChild(card)
 }
 
-function handleFavorite(beer, favorite) {
+const handleFavorite = (beer, favorite) => {
   if (!beer.favorite) {
     beer.favorite = true;
     favorite.textContent = '♥';
@@ -70,7 +70,7 @@ function handleFavorite(beer, favorite) {
   }
 }
 
-function getStoredFavoriteBeer(beer, favorite) {
+const getStoredFavoriteBeer = (beer, favorite) => {
   fetch('http://localhost:3000/favorites')
   .then(resp => resp.json())
   .then(favoriteBeer => {
@@ -83,7 +83,7 @@ function getStoredFavoriteBeer(beer, favorite) {
   }) 
 }
 
-function storeFavoriteBeer(beer) {
+const storeFavoriteBeer = beer => {
   fetch('http://localhost:3000/favorites', {
     method: 'POST',
     headers: {
@@ -93,7 +93,7 @@ function storeFavoriteBeer(beer) {
   })
 }
 
-function deleteFavoriteBeer(beer) {
+const deleteFavoriteBeer = beer => {
   fetch(`http://localhost:3000/favorites/${beer.id}`, {
     method: 'DELETE',
     headers: {
@@ -103,12 +103,12 @@ function deleteFavoriteBeer(beer) {
 }
 
 
-function getBeerFromSearch() {
+const getBeerFromSearch = () => {
   const searchForm = document.querySelector('#beer-search')
   searchForm.addEventListener('submit', handleSearchSubmit);
 }
 
-function refreshList() {
+const refreshList = () => {
   const logo = document.querySelector('.page-header img');
   const items = document.querySelector('#item-container');
   logo.addEventListener('click', () => {
@@ -119,7 +119,7 @@ function refreshList() {
   });
 }
 
-function handleSearchSubmit(e) {
+const handleSearchSubmit = e => {
   e.preventDefault();
   const items = document.querySelector('#item-container');
   removeChildren(items);
@@ -130,7 +130,7 @@ function handleSearchSubmit(e) {
   e.target.reset();
 }
 
-function rerenderPageButtons() {
+const rerenderPageButtons = () => {
   const bttnContainer = document.querySelector('#bttn-container');
   removeChildren(bttnContainer);
   const previous = createElementWithText('button', 'Previous Page');
@@ -140,7 +140,7 @@ function rerenderPageButtons() {
   bttnContainer.append(previous, next);
 }
 
-function handlePageChangeWith(name) {
+const handlePageChangeWith = name => {
   page = 1;
   const previous = document.querySelector('#previous-page');
   previous.addEventListener('click', () => handlePreviousBttn(name));
@@ -148,7 +148,7 @@ function handlePageChangeWith(name) {
   next.addEventListener('click', () => handleNextBttn(name));
 }
 
-function handleNextBttn(name) {
+const handleNextBttn = name => {
   const items = document.querySelector('#item-container');
   if (items.children.length > 0) {
     page += 1;
@@ -157,7 +157,7 @@ function handleNextBttn(name) {
   }
 }
 
-function handlePreviousBttn(name) {
+const handlePreviousBttn = name => {
   page -= 1;
   if (page === 0) {
     page = 1;
@@ -168,20 +168,20 @@ function handlePreviousBttn(name) {
   getBeer(page, name);
 }
 
-function createImage(src, alt) {
+const createImage = (src, alt) => {
   const img = document.createElement('img');
   img.src = src;
   img.alt = alt;
   return img;
 }
 
-function createElementWithText(element, text) {
+const createElementWithText = (element, text) => {
   element = document.createElement(element);
   element.textContent = text;
   return element;
 }
 
-function removeChildren(node) {
+const removeChildren = node => {
   while(node.firstChild) {
     node.removeChild(node.firstChild);
   }
