@@ -38,8 +38,7 @@ function renderBeer(beers) {
 }
 
 function handleEndOfSelection() {
-  const end = document.createElement('p')
-  end.textContent = "End of Selection \'(>_<)\'";
+  const end = createElementWithText('p', "End of Selection \'(>_<)\'");
   end.id = 'end';
   document.querySelector('#item-container').append(end);
 }
@@ -62,11 +61,6 @@ function createBeerCard(beer) {
   document.querySelector('#item-container').appendChild(card)
 }
 
-function createElementWithText(element, text) {
-  element = document.createElement(element);
-  element.textContent = text;
-  return element;
-}
 
 function getBeerFromSearch() {
   const searchForm = document.querySelector('#beer-search')
@@ -98,12 +92,10 @@ function handleSearchSubmit(e) {
 function rerenderPageButtons() {
   const bttnContainer = document.querySelector('#bttn-container');
   removeChildren(bttnContainer);
-  const previous = document.createElement('button');
+  const previous = createElementWithText('button', 'Previous Page');
   previous.id = 'previous-page';
-  previous.textContent = 'Previous Page';
-  const next = document.createElement('button');
+  const next = createElementWithText('button', 'Next Page');
   next.id = "next-page";
-  next.textContent = 'Next Page';
   bttnContainer.append(previous, next);
 }
 
@@ -133,6 +125,12 @@ function handlePreviousBttn(name) {
   const items = document.querySelector('#item-container');
   removeChildren(items);
   getBeer(page, name);
+}
+
+function createElementWithText(element, text) {
+  element = document.createElement(element);
+  element.textContent = text;
+  return element;
 }
 
 function removeChildren(node) {
