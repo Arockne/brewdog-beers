@@ -76,7 +76,9 @@ button,
   display: flex;
   flex-flow: row wrap;
   align-content: flex-end;
+  margin: 0 5.4rem;
 }
+/*Margins are temporary^^^*/
 
 #bttn-container {
   margin: 0 auto;
