@@ -55,14 +55,26 @@ function createBeerCard(beer) {
   const beerName = createElementWithText('h3', name);
   const favorite = createElementWithText('p', '♡');
   favorite.className = 'favorite';
-  let favored = false;
   favorite.addEventListener('click', () => {
-    if (!favored) {
-      favored = true;
+    if (!beer.favorite) {
+      beer.favorite = true;
       favorite.textContent = '♥';
+      fetch('http://localhost:3000/beer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id: beer.id, favorite: beer.favorite})
+      })
     } else {
-      favored = !favored;
+      beer.favorite = !beer.favorite;
       favorite.textContent = '♡';
+      fetch(`http://localhost:3000/beer/${beer.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
     }
   })
   const card = document.createElement('div')
