@@ -57,7 +57,9 @@ function createBeerCard(beer) {
   favorite.className = 'favorite';
   getStoredFavoriteBeer(beer, favorite);
 
-  favorite.addEventListener('click', () => {
+  favorite.addEventListener('click', () => handleFavorite(beer, favorite));
+  
+  function handleFavorite(beer, favorite) {
     if (!beer.favorite) {
       beer.favorite = true;
       favorite.textContent = '♥';
@@ -67,7 +69,7 @@ function createBeerCard(beer) {
       favorite.textContent = '♡';
       deleteFavoriteBeer(beer);
     }
-  })
+  }
 
   function getStoredFavoriteBeer(beer, favorite) {
     fetch('http://localhost:3000/favorites')
