@@ -64,6 +64,12 @@ function createBeerCard(beer) {
   document.querySelector('#item-container').appendChild(card)
 }
 
+function createElementWithText(element, text) {
+  element = document.createElement(element);
+  element.textContent = text;
+  return element;
+}
+
 function getBeerFromSearch() {
   const searchForm = document.querySelector('#beer-search')
   searchForm.addEventListener('submit', handleSearchSubmit);
