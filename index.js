@@ -73,7 +73,7 @@ function createBeerCard(beer) {
       storeFavoriteBeer(beer);
     } else {
       favorite.textContent = '♡';
-      removeFavoriteBeer(beer);
+      deleteFavoriteBeer(beer);
     }
   })
 
@@ -87,7 +87,7 @@ function createBeerCard(beer) {
     })
   }
 
-  function removeFavoriteBeer(beer) {
+  function deleteFavoriteBeer(beer) {
     fetch(`http://localhost:3000/favorites/${beer.id}`, {
       method: 'DELETE',
       headers: {
