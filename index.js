@@ -55,9 +55,12 @@ function createBeerCard(beer) {
   img.alt = 'Beer label';
   const beerName = document.createElement('h3');
   beerName.textContent = name;
+  const favorite = document.createElement('p');
+  favorite.textContent = '♡';
+  favorite.className = 'favorite';
   const card = document.createElement('div')
   card.className = 'card';
-  card.append(img, beerName);
+  card.append(img, beerName, favorite);
   document.querySelector('#item-container').appendChild(card)
 }
 
