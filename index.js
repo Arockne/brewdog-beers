@@ -45,13 +45,8 @@ function handleEndOfSelection() {
 
 function createBeerCard(beer) {
   const {image_url, name} = beer
-  const img = document.createElement('img');
-  if (image_url !== null) {
-    img.src = image_url;
-  } else {
-    img.src = './resources/images/bottle.png'
-  }
-  img.alt = 'Beer label';
+  const imgURL = image_url ? image_url : './resources/images/bottle.png';
+  const img = createImage(imgURL, 'Bottle');
   const beerName = createElementWithText('h3', name);
   const favorite = createElementWithText('p', '♡');
   favorite.className = 'favorite';
@@ -171,6 +166,13 @@ function handlePreviousBttn(name) {
   const items = document.querySelector('#item-container');
   removeChildren(items);
   getBeer(page, name);
+}
+
+function createImage(src, alt) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  return img;
 }
 
 function createElementWithText(element, text) {
