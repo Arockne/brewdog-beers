@@ -75,7 +75,7 @@ function createBeerCard(beer) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({id: beer.id, favorite: beer.favorite})
+        body: JSON.stringify({id: beer.id})
       })
     } else {
       beer.favorite = !beer.favorite;
