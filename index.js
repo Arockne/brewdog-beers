@@ -56,57 +56,55 @@ function createBeerCard(beer) {
   const favorite = createElementWithText('p', '♡');
   favorite.className = 'favorite';
   getStoredFavoriteBeer(beer, favorite);
-
   favorite.addEventListener('click', () => handleFavorite(beer, favorite));
-  
-  function handleFavorite(beer, favorite) {
-    if (!beer.favorite) {
-      beer.favorite = true;
-      favorite.textContent = '♥';
-      storeFavoriteBeer(beer);
-    } else {
-      beer.favorite = false;
-      favorite.textContent = '♡';
-      deleteFavoriteBeer(beer);
-    }
-  }
-
-  function getStoredFavoriteBeer(beer, favorite) {
-    fetch('http://localhost:3000/favorites')
-    .then(resp => resp.json())
-    .then(favoriteBeer => {
-      favoriteBeer.forEach(local => {
-        if (local.id === beer.id) {
-          beer.favorite = true;
-          favorite.textContent = '♥';
-        }
-      })
-    }) 
-  }
-
-  function storeFavoriteBeer(beer) {
-    fetch('http://localhost:3000/favorites', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({id: beer.id})
-    })
-  }
-
-  function deleteFavoriteBeer(beer) {
-    fetch(`http://localhost:3000/favorites/${beer.id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-  }
-
   const card = document.createElement('div')
   card.className = 'card';
   card.append(img, beerName, favorite);
   document.querySelector('#item-container').appendChild(card)
+}
+
+function handleFavorite(beer, favorite) {
+  if (!beer.favorite) {
+    beer.favorite = true;
+    favorite.textContent = '♥';
+    storeFavoriteBeer(beer);
+  } else {
+    beer.favorite = false;
+    favorite.textContent = '♡';
+    deleteFavoriteBeer(beer);
+  }
+}
+
+function getStoredFavoriteBeer(beer, favorite) {
+  fetch('http://localhost:3000/favorites')
+  .then(resp => resp.json())
+  .then(favoriteBeer => {
+    favoriteBeer.forEach(local => {
+      if (local.id === beer.id) {
+        beer.favorite = true;
+        favorite.textContent = '♥';
+      }
+    })
+  }) 
+}
+
+function storeFavoriteBeer(beer) {
+  fetch('http://localhost:3000/favorites', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({id: beer.id})
+  })
+}
+
+function deleteFavoriteBeer(beer) {
+  fetch(`http://localhost:3000/favorites/${beer.id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
 
 
