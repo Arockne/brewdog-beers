@@ -55,6 +55,16 @@ function createBeerCard(beer) {
   const beerName = createElementWithText('h3', name);
   const favorite = createElementWithText('p', '♡');
   favorite.className = 'favorite';
+  let favored = false;
+  favorite.addEventListener('click', () => {
+    if (!favored) {
+      favored = true;
+      favorite.textContent = '♥';
+    } else {
+      favored = !favored;
+      favorite.textContent = '♡';
+    }
+  })
   const card = document.createElement('div')
   card.className = 'card';
   card.append(img, beerName, favorite);
