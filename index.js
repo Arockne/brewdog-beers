@@ -70,24 +70,32 @@ function createBeerCard(beer) {
     if (!beer.favorite) {
       beer.favorite = true;
       favorite.textContent = '♥';
-      fetch('http://localhost:3000/favorites', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({id: beer.id})
-      })
+      storeFavoriteBeer(beer);
     } else {
-      beer.favorite = !beer.favorite;
       favorite.textContent = '♡';
-      fetch(`http://localhost:3000/favorites/${beer.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      removeFavoriteBeer(beer);
     }
   })
+
+  function storeFavoriteBeer(beer) {
+    fetch('http://localhost:3000/favorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: beer.id})
+    })
+  }
+
+  function removeFavoriteBeer(beer) {
+    fetch(`http://localhost:3000/favorites/${beer.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
   const card = document.createElement('div')
   card.className = 'card';
   card.append(img, beerName, favorite);
