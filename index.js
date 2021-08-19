@@ -53,10 +53,8 @@ function createBeerCard(beer) {
     img.src = './resources/images/bottle.png'
   }
   img.alt = 'Beer label';
-  const beerName = document.createElement('h3');
-  beerName.textContent = name;
-  const favorite = document.createElement('p');
-  favorite.textContent = '♡';
+  const beerName = createElementWithText('h3', name);
+  const favorite = createElementWithText('p', '♡');
   favorite.className = 'favorite';
   const card = document.createElement('div')
   card.className = 'card';
