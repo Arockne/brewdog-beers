@@ -55,16 +55,7 @@ function createBeerCard(beer) {
   const beerName = createElementWithText('h3', name);
   const favorite = createElementWithText('p', '♡');
   favorite.className = 'favorite';
-  fetch('http://localhost:3000/favorites')
-  .then(resp => resp.json())
-  .then(favoriteBeer => {
-    favoriteBeer.forEach(local => {
-      if (local.id === beer.id) {
-        beer.favorite = true;
-        favorite.textContent = '♥';
-      }
-    })
-  })  
+  getStoredFavoriteBeer(beer, favorite);
 
   favorite.addEventListener('click', () => {
     if (!beer.favorite) {
@@ -77,6 +68,19 @@ function createBeerCard(beer) {
       deleteFavoriteBeer(beer);
     }
   })
+
+  function getStoredFavoriteBeer(beer, favorite) {
+    fetch('http://localhost:3000/favorites')
+    .then(resp => resp.json())
+    .then(favoriteBeer => {
+      favoriteBeer.forEach(local => {
+        if (local.id === beer.id) {
+          beer.favorite = true;
+          favorite.textContent = '♥';
+        }
+      })
+    }) 
+  }
 
   function storeFavoriteBeer(beer) {
     fetch('http://localhost:3000/favorites', {
