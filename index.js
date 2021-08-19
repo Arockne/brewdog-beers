@@ -72,6 +72,7 @@ function createBeerCard(beer) {
       favorite.textContent = '♥';
       storeFavoriteBeer(beer);
     } else {
+      beer.favorite = false;
       favorite.textContent = '♡';
       deleteFavoriteBeer(beer);
     }
