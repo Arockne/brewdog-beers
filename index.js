@@ -39,7 +39,7 @@ const renderBeer = beers => {
 
 const handleEndOfSelection = () => {
   const end = createElementWithText('p', "End of Selection \'(>_<)\'");
-  end.id = 'end';
+  end.className = 'end';
   document.querySelector('.item-container').append(end);
 }
 
@@ -124,7 +124,7 @@ const handleSearchSubmit = e => {
   const items = document.querySelector('.item-container');
   removeChildren(items);
   rerenderPageButtons();
-  const name = e.target.parentNode.querySelector('.beer-name').value;
+  const name = e.target.parentNode.querySelector('#beer-name').value;
   getBeer(1, name);
   handlePageChangeWith(name);
   e.target.reset();
