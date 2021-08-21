@@ -10,7 +10,7 @@ const getBeer = (page = 1, name) => {
 
 const getRandomBeer = () => {
   const randomBttn = document.querySelector('#random-bttn');
-  const items = document.querySelector('#item-container');
+  const items = document.querySelector('.item-container');
   randomBttn.addEventListener('click', () => {
     rerenderPageButtons();
     removeChildren(items);
@@ -40,7 +40,7 @@ const renderBeer = beers => {
 const handleEndOfSelection = () => {
   const end = createElementWithText('p', "End of Selection \'(>_<)\'");
   end.id = 'end';
-  document.querySelector('#item-container').append(end);
+  document.querySelector('.item-container').append(end);
 }
 
 const createBeerCard = beer => {
@@ -55,7 +55,7 @@ const createBeerCard = beer => {
   const card = document.createElement('div')
   card.className = 'card';
   card.append(img, beerName, favorite);
-  document.querySelector('#item-container').appendChild(card)
+  document.querySelector('.item-container').appendChild(card)
 }
 
 const handleFavorite = (beer, favorite) => {
@@ -104,13 +104,13 @@ const deleteFavoriteBeer = beer => {
 
 
 const getBeerFromSearch = () => {
-  const searchForm = document.querySelector('#beer-search')
+  const searchForm = document.querySelector('.beer-search')
   searchForm.addEventListener('submit', handleSearchSubmit);
 }
 
 const refreshList = () => {
   const logo = document.querySelector('.page-header img');
-  const items = document.querySelector('#item-container');
+  const items = document.querySelector('.item-container');
   logo.addEventListener('click', () => {
     removeChildren(items);
     rerenderPageButtons();
@@ -121,17 +121,17 @@ const refreshList = () => {
 
 const handleSearchSubmit = e => {
   e.preventDefault();
-  const items = document.querySelector('#item-container');
+  const items = document.querySelector('.item-container');
   removeChildren(items);
   rerenderPageButtons();
-  const name = e.target.parentNode.querySelector('#beer-name').value;
+  const name = e.target.parentNode.querySelector('.beer-name').value;
   getBeer(1, name);
   handlePageChangeWith(name);
   e.target.reset();
 }
 
 const rerenderPageButtons = () => {
-  const bttnContainer = document.querySelector('#bttn-container');
+  const bttnContainer = document.querySelector('.bttn-container');
   removeChildren(bttnContainer);
   const previous = createElementWithText('button', 'Previous Page');
   previous.id = 'previous-page';
@@ -149,7 +149,7 @@ const handlePageChangeWith = name => {
 }
 
 const handleNextBttn = name => {
-  const items = document.querySelector('#item-container');
+  const items = document.querySelector('.item-container');
   if (items.children.length > 0) {
     page += 1;
     removeChildren(items);
@@ -163,7 +163,7 @@ const handlePreviousBttn = name => {
     page = 1;
     return;
   }
-  const items = document.querySelector('#item-container');
+  const items = document.querySelector('.item-container');
   removeChildren(items);
   getBeer(page, name);
 }
