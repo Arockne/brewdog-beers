@@ -2,7 +2,7 @@ let page = 1;
 
 const getBeer = (page = 1, name) => {
   name = replaceSpaces(name);
-  const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=20&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=20`;
+  const url = name ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=14&beer_name=${name}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=14`;
   fetch(url)
   .then(resp => resp.json())
   .then(renderBeer)
