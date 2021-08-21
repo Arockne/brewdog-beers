@@ -16,10 +16,7 @@ const getRandomBeer = () => {
     removeChildren(items);
     fetch('https://api.punkapi.com/v2/beers/random')
     .then(resp => resp.json())
-    .then(beer => {
-      renderBeer(beer)
-      items.firstChild.style.margin = '0 auto';
-    })
+    .then(renderBeer)
   })
 }
 
