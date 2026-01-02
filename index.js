@@ -17,7 +17,7 @@ const getRandomBeer = () => {
     removeChildren(items);
     fetch('https://punkapi-alxiw.amvera.io/v3/beers/random')
     .then(resp => resp.json())
-    .then(renderBeer)
+    .then(data => renderBeer([data]))
   })
 }
 
