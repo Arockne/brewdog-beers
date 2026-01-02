@@ -69,7 +69,7 @@ const handleFavorite = (beer, favorite) => {
 }
 
 const getStoredFavoriteBeer = (beer, favorite) => {
-  fetch('./db.json/favorites')
+  fetch('http://localhost:3000/favorites')
   .then(resp => resp.json())
   .then(favoriteBeer => {
     favoriteBeer.forEach(local => {
@@ -82,7 +82,7 @@ const getStoredFavoriteBeer = (beer, favorite) => {
 }
 
 const storeFavoriteBeer = beer => {
-  fetch('./db.json/favorites', {
+  fetch('http://localhost:3000/favorites', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ const storeFavoriteBeer = beer => {
 }
 
 const deleteFavoriteBeer = beer => {
-  fetch(`./db.json/favorites/${beer.id}`, {
+  fetch(`http://localhost:3000/favorites/${beer.id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
