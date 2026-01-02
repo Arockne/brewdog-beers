@@ -15,7 +15,7 @@ const getRandomBeer = () => {
   randomBttn.addEventListener('click', () => {
     rerenderPageButtons();
     removeChildren(items);
-    fetch('https://api.punkapi.com/v2/beers/random')
+    fetch('https://punkapi-alxiw.amvera.io/v3/beers/random')
     .then(resp => resp.json())
     .then(renderBeer)
   })
